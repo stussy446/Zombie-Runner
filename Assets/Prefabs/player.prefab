@@ -230,7 +230,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1dc567da00208ea47997280173cb7f06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  availableWeapons: []
+  availableWeapons:
+  - {fileID: 2355192654608893300, guid: ada2587319194f542957a8c2ae277cb9, type: 3}
 --- !u!4 &578303416808230143 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8997996947095583982, guid: c5efc39a8aaf6e64ea40e9ad573e9b47, type: 3}
