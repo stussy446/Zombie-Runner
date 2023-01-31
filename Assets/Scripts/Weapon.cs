@@ -16,6 +16,8 @@ public class Weapon : MonoBehaviour
     [SerializeField] bool debugMode;
     [SerializeField] float damage;
     [SerializeField] ParticleSystem muzzleFlashParticles;
+    [SerializeField] GameObject hitImpactParticles;
+
 
     private void Awake()
     {
@@ -62,9 +64,8 @@ public class Weapon : MonoBehaviour
 
         if (Physics.Raycast(cam.transform.position, direction, out hit, bulletRange, shootableLayer))
         {
-            Debug.Log(hit.collider.gameObject.name);
             EnemyHealth target = hit.transform.GetComponent<EnemyHealth>();
-
+            CreateHitImpact(hit);
             if (target != null)
             {
                 target.TakeDamage(damage);
@@ -72,10 +73,22 @@ public class Weapon : MonoBehaviour
         }
     }
 
+    private void CreateHitImpact(RaycastHit hit)
+    {
+        GameObject impact = Instantiate(hitImpactParticles, hit.point, Quaternion.LookRotation(hit.normal));
+
+        ParticleSystem[] effects = impact.GetComponentsInChildren<ParticleSystem>();
+        foreach (var effect in effects)
+        {
+            effect.Play();
+        }
+        
+        Destroy(impact, 0.1f);
+    }
+
     private void PlayMuzzleFlash()
     {
         muzzleFlashParticles.Play();
-
     }
 
     private void ResetShot()
