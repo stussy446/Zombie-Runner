@@ -409,25 +409,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 712504489}
   m_CullTransparentMesh: 1
---- !u!1 &1239276412 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2595647118629871979, guid: 04ad349812b189e4b8e04c0084507df2, type: 3}
-  m_PrefabInstance: {fileID: 8419978028996356331}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1239276414
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1239276412}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1dc567da00208ea47997280173cb7f06, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  availableWeapons:
-  - {fileID: 2355192654608893300, guid: ada2587319194f542957a8c2ae277cb9, type: 3}
 --- !u!1001 &1758274432
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -833,10 +814,6 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 346340959}
-    - target: {fileID: 1464660902697910266, guid: b754bfbd2fd9396488857911cb1027bc, type: 3}
-      propertyPath: m_StoppingDistance
-      value: 1.5
-      objectReference: {fileID: 0}
     - target: {fileID: 1464660902697910270, guid: b754bfbd2fd9396488857911cb1027bc, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -938,6 +915,5 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 8382560297809842496, guid: 04ad349812b189e4b8e04c0084507df2, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 04ad349812b189e4b8e04c0084507df2, type: 3}
