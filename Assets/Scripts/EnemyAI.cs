@@ -7,15 +7,23 @@ using UnityEngine.AI;
 [RequireComponent(typeof(NavMeshAgent))]
 public class EnemyAI : MonoBehaviour
 {
+    [Header("Chase Configurations")]
     [SerializeField] Transform target;
     [SerializeField] float chaseRange = 5f;
     
     NavMeshAgent navMeshAgent;
     float distanceToTarget = Mathf.Infinity;
+    Animator animator;
+
+    // animation hash codes
+    int idleHash = Animator.StringToHash("Idle");
+    int moveHash = Animator.StringToHash("Move");
+    int attackHash = Animator.StringToHash("Attack");
 
     private void Awake()
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
+        animator = GetComponent<Animator>();
     }
 
     private void Update()
@@ -25,6 +33,10 @@ public class EnemyAI : MonoBehaviour
         if (TargetInRange())
         {
             EngageTarget();
+        }
+        else
+        {
+            Wait();
         }
     }
 
@@ -47,12 +59,19 @@ public class EnemyAI : MonoBehaviour
 
     private void AttackTarget()
     {
-        Debug.Log("ATTACK");
+        animator.SetBool(attackHash, true);
     }
 
     private void ChaseTarget()
     {
+        animator.SetTrigger(moveHash);
+        animator.SetBool(attackHash, false);
         navMeshAgent.SetDestination(target.position);
+    }
+
+    private void Wait()
+    {
+        animator.SetTrigger(idleHash);
     }
 
     private bool TargetInRange()
