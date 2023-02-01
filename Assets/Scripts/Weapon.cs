@@ -30,7 +30,6 @@ public class Weapon : MonoBehaviour
         weaponInputs.Enable();
         weaponInputs.Shoot.Fire.started += ctx => Startshot();
         weaponInputs.Shoot.Fire.canceled += ctx => EndShot();
-
     }
 
     private void Update()
@@ -110,5 +109,4 @@ public class Weapon : MonoBehaviour
     {
         weaponInputs.Disable();
     }
-
 }
