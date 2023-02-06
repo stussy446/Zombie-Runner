@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8463597053150778219}
   - component: {fileID: 4331540091381497950}
   - component: {fileID: 1237967728325591154}
+  - component: {fileID: 9125416800953554702}
   m_Layer: 0
   m_Name: player
   m_TagString: Untagged
@@ -63,8 +64,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerCamera: {fileID: 954800361359074609}
   zoomFov: 25
-  fpsController: {fileID: 237946721618859586}
   zoomedMouseSensitivty: 0.5
+--- !u!114 &9125416800953554702
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1653904525754436665}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56f243b43f0bec04fb8e1fb7ebc93de8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ammoAmount: 150
 --- !u!1 &2595647118629871979
 GameObject:
   m_ObjectHideFlags: 0
@@ -184,6 +197,10 @@ PrefabInstance:
       value: Carbine
       objectReference: {fileID: 0}
     - target: {fileID: 2355192654608893300, guid: ada2587319194f542957a8c2ae277cb9, type: 3}
+      propertyPath: ammoSlot
+      value: 
+      objectReference: {fileID: 9125416800953554702}
+    - target: {fileID: 2355192654608893300, guid: ada2587319194f542957a8c2ae277cb9, type: 3}
       propertyPath: weaponZoom
       value: 
       objectReference: {fileID: 1237967728325591154}
@@ -263,17 +280,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c5efc39a8aaf6e64ea40e9ad573e9b47, type: 3}
---- !u!114 &237946721618859586 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8616685848737228371, guid: c5efc39a8aaf6e64ea40e9ad573e9b47, type: 3}
-  m_PrefabInstance: {fileID: 8419978028990443537}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 237946721618859589}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 55919ac34a26952479f3fc91f777b2fa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &237946721618859589 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8616685848737228372, guid: c5efc39a8aaf6e64ea40e9ad573e9b47, type: 3}

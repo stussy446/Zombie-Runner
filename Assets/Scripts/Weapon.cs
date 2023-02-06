@@ -17,6 +17,9 @@ public class Weapon : MonoBehaviour
     [SerializeField] GameObject hitImpactParticles;
     [SerializeField] WeaponZoom weaponZoom;
 
+    [Header("Ammo Slot")]
+    [SerializeField] Ammo ammoSlot;
+
     [Header("Debug setting")]
     [Tooltip("shows trajectory of shot if enabled")][SerializeField] bool debugMode;
 
@@ -72,6 +75,12 @@ public class Weapon : MonoBehaviour
 
     private void PerformShot()
     {
+        if (ammoSlot.OutOfAmmo())
+        {
+            isShooting = false;
+            return;
+        }
+
         Vector3 direction = cam.transform.forward;
 
         if (debugMode)
@@ -90,6 +99,8 @@ public class Weapon : MonoBehaviour
                 target.TakeDamage(damage);
             }
         }
+
+        ammoSlot.ReduceAmmo();
     }
 
     private void CreateHitImpact(RaycastHit hit)
