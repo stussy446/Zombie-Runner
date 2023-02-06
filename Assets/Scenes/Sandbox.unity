@@ -1927,37 +1927,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 585816574632774699, guid: 04ad349812b189e4b8e04c0084507df2, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 585816574632774699, guid: 04ad349812b189e4b8e04c0084507df2, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1.375
-      objectReference: {fileID: 0}
-    - target: {fileID: 585816574632774699, guid: 04ad349812b189e4b8e04c0084507df2, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 585816574632774700, guid: 04ad349812b189e4b8e04c0084507df2, type: 3}
-      propertyPath: field of view
-      value: 40
-      objectReference: {fileID: 0}
-    - target: {fileID: 585816574632774700, guid: 04ad349812b189e4b8e04c0084507df2, type: 3}
-      propertyPath: near clip plane
-      value: 0.09
-      objectReference: {fileID: 0}
     - target: {fileID: 1653904525754436665, guid: 04ad349812b189e4b8e04c0084507df2, type: 3}
       propertyPath: m_Name
       value: player
       objectReference: {fileID: 0}
-    - target: {fileID: 1653904525754436665, guid: 04ad349812b189e4b8e04c0084507df2, type: 3}
+    - target: {fileID: 1761279337329634706, guid: 04ad349812b189e4b8e04c0084507df2, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 3433687412098350946, guid: 04ad349812b189e4b8e04c0084507df2, type: 3}
-      propertyPath: debugMode
-      value: 0
+    - target: {fileID: 3415785906815984016, guid: 04ad349812b189e4b8e04c0084507df2, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4331540091381497950, guid: 04ad349812b189e4b8e04c0084507df2, type: 3}
       propertyPath: gameOverCanvas
