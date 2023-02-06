@@ -13,7 +13,7 @@ public class EnemyAttack : MonoBehaviour
 
     public void AttackHitEvent()
     {
-        if (target != null )
+        if (target != null)
         {
             target.TakeDamage(damage);
         }

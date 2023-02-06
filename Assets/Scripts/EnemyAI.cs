@@ -8,15 +8,14 @@ using UnityEngine.AI;
 public class EnemyAI : MonoBehaviour
 {
     [Header("Chase Configurations")]
-    [SerializeField] Transform target;
     [SerializeField] float chaseRange = 5f;
-    
     [SerializeField] float turnSpeed = 5f;
 
-    
+    Transform target;
     NavMeshAgent navMeshAgent;
-    float distanceToTarget = Mathf.Infinity;
     Animator animator;
+    float distanceToTarget = Mathf.Infinity;
+    bool damageTaken = false;
 
     // animation hash codes
     int idleHash = Animator.StringToHash("Idle");
@@ -29,11 +28,16 @@ public class EnemyAI : MonoBehaviour
         animator = GetComponent<Animator>();
     }
 
+    private void Start()
+    {
+        target = FindObjectOfType<PlayerHealth>().transform;
+    }
+
     private void Update()
     {
         CalculateDistanceToTarget();
 
-        if (TargetInRange())
+        if (TargetInRange() || damageTaken)
         {
             EngageTarget();
         }
@@ -60,6 +64,11 @@ public class EnemyAI : MonoBehaviour
         {
             ChaseTarget();
         }
+    }
+
+    public void OnDamageTaken()
+    {
+        damageTaken = true;
     }
 
     private void AttackTarget()
