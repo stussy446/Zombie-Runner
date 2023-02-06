@@ -17,7 +17,6 @@ public class Ammo : MonoBehaviour
         if (OutOfAmmo())
         {
             ammoAmount = 0;
-            Debug.Log("out of ammo");
         }
 
         return ammoAmount;

@@ -52,7 +52,7 @@ public class Weapon : MonoBehaviour
 
     private void Update()
     {
-        if (isShooting)
+        if (isShooting && !ammoSlot.OutOfAmmo())
         {
             PerformShot();
         }
@@ -75,12 +75,7 @@ public class Weapon : MonoBehaviour
 
     private void PerformShot()
     {
-        if (ammoSlot.OutOfAmmo())
-        {
-            isShooting = false;
-            return;
-        }
-
+      
         Vector3 direction = cam.transform.forward;
 
         if (debugMode)

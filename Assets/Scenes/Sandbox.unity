@@ -1931,6 +1931,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: player
       objectReference: {fileID: 0}
+    - target: {fileID: 1761279337329634706, guid: 04ad349812b189e4b8e04c0084507df2, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3415785906815984016, guid: 04ad349812b189e4b8e04c0084507df2, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4331540091381497950, guid: 04ad349812b189e4b8e04c0084507df2, type: 3}
       propertyPath: gameOverCanvas
       value: 
