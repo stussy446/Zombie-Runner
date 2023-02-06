@@ -44,6 +44,15 @@ public partial class @ShootInput : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Zoom"",
+                    ""type"": ""Button"",
+                    ""id"": ""be6dcd12-bc3a-4ac7-b6d0-18c90655442b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -79,6 +88,28 @@ public partial class @ShootInput : IInputActionCollection2, IDisposable
                     ""action"": ""Reload"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4c99cc2b-5482-4cbf-b2d5-cd5b51348abf"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Zoom"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""96d9e517-2d65-4287-a931-485ba49144bd"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Zoom"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -89,6 +120,7 @@ public partial class @ShootInput : IInputActionCollection2, IDisposable
         m_Shoot = asset.FindActionMap("Shoot", throwIfNotFound: true);
         m_Shoot_Fire = m_Shoot.FindAction("Fire", throwIfNotFound: true);
         m_Shoot_Reload = m_Shoot.FindAction("Reload", throwIfNotFound: true);
+        m_Shoot_Zoom = m_Shoot.FindAction("Zoom", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -150,12 +182,14 @@ public partial class @ShootInput : IInputActionCollection2, IDisposable
     private IShootActions m_ShootActionsCallbackInterface;
     private readonly InputAction m_Shoot_Fire;
     private readonly InputAction m_Shoot_Reload;
+    private readonly InputAction m_Shoot_Zoom;
     public struct ShootActions
     {
         private @ShootInput m_Wrapper;
         public ShootActions(@ShootInput wrapper) { m_Wrapper = wrapper; }
         public InputAction @Fire => m_Wrapper.m_Shoot_Fire;
         public InputAction @Reload => m_Wrapper.m_Shoot_Reload;
+        public InputAction @Zoom => m_Wrapper.m_Shoot_Zoom;
         public InputActionMap Get() { return m_Wrapper.m_Shoot; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -171,6 +205,9 @@ public partial class @ShootInput : IInputActionCollection2, IDisposable
                 @Reload.started -= m_Wrapper.m_ShootActionsCallbackInterface.OnReload;
                 @Reload.performed -= m_Wrapper.m_ShootActionsCallbackInterface.OnReload;
                 @Reload.canceled -= m_Wrapper.m_ShootActionsCallbackInterface.OnReload;
+                @Zoom.started -= m_Wrapper.m_ShootActionsCallbackInterface.OnZoom;
+                @Zoom.performed -= m_Wrapper.m_ShootActionsCallbackInterface.OnZoom;
+                @Zoom.canceled -= m_Wrapper.m_ShootActionsCallbackInterface.OnZoom;
             }
             m_Wrapper.m_ShootActionsCallbackInterface = instance;
             if (instance != null)
@@ -181,6 +218,9 @@ public partial class @ShootInput : IInputActionCollection2, IDisposable
                 @Reload.started += instance.OnReload;
                 @Reload.performed += instance.OnReload;
                 @Reload.canceled += instance.OnReload;
+                @Zoom.started += instance.OnZoom;
+                @Zoom.performed += instance.OnZoom;
+                @Zoom.canceled += instance.OnZoom;
             }
         }
     }
@@ -189,5 +229,6 @@ public partial class @ShootInput : IInputActionCollection2, IDisposable
     {
         void OnFire(InputAction.CallbackContext context);
         void OnReload(InputAction.CallbackContext context);
+        void OnZoom(InputAction.CallbackContext context);
     }
 }

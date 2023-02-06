@@ -10,13 +10,18 @@ public class Weapon : MonoBehaviour
     RaycastHit hit;
 
     bool isShooting;
+    bool isZooming;
 
+    [Header("Weapon Configurations")]
     [SerializeField] float bulletRange;
     [SerializeField] LayerMask shootableLayer;
-    [SerializeField] bool debugMode;
     [SerializeField] float damage;
     [SerializeField] ParticleSystem muzzleFlashParticles;
     [SerializeField] GameObject hitImpactParticles;
+    [SerializeField] WeaponZoom weaponZoom;
+
+    [Header("Debug setting")]
+    [Tooltip("shows trajectory of shot if enabled")][SerializeField] bool debugMode;
 
 
     private void Awake()
@@ -30,6 +35,19 @@ public class Weapon : MonoBehaviour
         weaponInputs.Enable();
         weaponInputs.Shoot.Fire.started += ctx => Startshot();
         weaponInputs.Shoot.Fire.canceled += ctx => EndShot();
+        weaponInputs.Shoot.Zoom.started += ctx => StartZoom();
+        weaponInputs.Shoot.Zoom.canceled += ctx => EndZoom();
+    }
+
+    private void StartZoom()
+    {
+        isZooming = true;
+    }
+
+    private void EndZoom()
+    {
+        isZooming = false;
+        weaponZoom.UnZoom();
     }
 
     private void Update()
@@ -37,6 +55,11 @@ public class Weapon : MonoBehaviour
         if (isShooting)
         {
             PerformShot();
+        }
+
+        if (isZooming)
+        {
+            weaponZoom.Zoom();
         }
     }
 
@@ -88,21 +111,6 @@ public class Weapon : MonoBehaviour
     private void PlayMuzzleFlash()
     {
         muzzleFlashParticles.Play();
-    }
-
-    private void ResetShot()
-    {
-
-    }
-
-    private void Reload()
-    {
-
-    }
-
-    private void ReloadFinish()
-    {
-
     }
 
     private void OnDisable()
