@@ -20,7 +20,7 @@ public class WeaponZoom : MonoBehaviour
         lensSettings = playerCamera.m_Lens;
         startingFov = lensSettings.FieldOfView;
 
-        fpsController = GetComponentInChildren<FirstPersonController>();
+        fpsController = FindObjectOfType<FirstPersonController>();
         startingMouseSensitivity = fpsController.RotationSpeed;
 
     }
