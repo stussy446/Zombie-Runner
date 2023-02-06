@@ -8,6 +8,7 @@ public class Weapon : MonoBehaviour
 
     bool isShooting;
     bool isZooming;
+    WeaponZoom weaponZoom;
 
     [Header("Weapon Configurations")]
     [SerializeField] float bulletRange;
@@ -15,7 +16,6 @@ public class Weapon : MonoBehaviour
     [SerializeField] float damage;
     [SerializeField] ParticleSystem muzzleFlashParticles;
     [SerializeField] GameObject hitImpactParticles;
-    [SerializeField] WeaponZoom weaponZoom;
 
     [Header("Ammo Slot")]
     [SerializeField] Ammo ammoSlot;
@@ -23,11 +23,17 @@ public class Weapon : MonoBehaviour
     [Header("Debug setting")]
     [Tooltip("shows trajectory of shot if enabled")][SerializeField] bool debugMode;
 
+    protected virtual bool IsShooting
+    {
+        get { return isShooting; }
+        set { isShooting = value; }
+    }
 
     private void Awake()
     {
         weaponInputs = new ShootInput();
         cam = Camera.main;
+        weaponZoom = GetComponent<WeaponZoom>();
     }
 
     private void OnEnable()
@@ -47,7 +53,10 @@ public class Weapon : MonoBehaviour
     private void EndZoom()
     {
         isZooming = false;
-        weaponZoom.UnZoom();
+        if (weaponZoom != null)
+        {
+            weaponZoom.UnZoom();
+        }
     }
 
     private void Update()
@@ -57,7 +66,7 @@ public class Weapon : MonoBehaviour
             PerformShot();
         }
 
-        if (isZooming)
+        if (isZooming && weaponZoom != null)
         {
             weaponZoom.Zoom();
         }
@@ -73,7 +82,7 @@ public class Weapon : MonoBehaviour
         isShooting = false;
     }
 
-    private void PerformShot()
+    protected virtual void PerformShot()
     {
       
         Vector3 direction = cam.transform.forward;
