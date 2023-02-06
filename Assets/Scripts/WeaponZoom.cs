@@ -1,6 +1,5 @@
 using Cinemachine;
-using System.Collections;
-using System.Collections.Generic;
+using StarterAssets;
 using UnityEngine;
 
 public class WeaponZoom : MonoBehaviour
@@ -8,7 +7,10 @@ public class WeaponZoom : MonoBehaviour
     [Header("Camera Configurations")]
     [SerializeField] CinemachineVirtualCamera playerCamera;
     [SerializeField] float zoomFov;
+    [SerializeField] float zoomedMouseSensitivty;
 
+    FirstPersonController fpsController;
+    float startingMouseSensitivity;
     float startingFov;
     LensSettings lensSettings;
 
@@ -17,16 +19,21 @@ public class WeaponZoom : MonoBehaviour
     {
         lensSettings = playerCamera.m_Lens;
         startingFov = lensSettings.FieldOfView;
+
+        fpsController = GetComponentInChildren<FirstPersonController>();
+        startingMouseSensitivity = fpsController.RotationSpeed;
+
     }
 
     public void Zoom()
     {
         playerCamera.m_Lens.FieldOfView = zoomFov;
+        fpsController.RotationSpeed = zoomedMouseSensitivty;
     }
 
     public void UnZoom()
     {
         playerCamera.m_Lens.FieldOfView = startingFov;
-
+        fpsController.RotationSpeed = startingMouseSensitivity;
     }
 }
