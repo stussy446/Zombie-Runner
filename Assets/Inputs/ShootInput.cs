@@ -53,6 +53,15 @@ public partial class @ShootInput : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SwitchWeapons"",
+                    ""type"": ""Button"",
+                    ""id"": ""f7905769-f1d4-43b6-9c3e-ece9abcf7216"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -110,6 +119,28 @@ public partial class @ShootInput : IInputActionCollection2, IDisposable
                     ""action"": ""Zoom"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8bdd86ae-a8c3-41fb-9bdc-3c89a73c9a20"",
+                    ""path"": ""<Keyboard>/tab"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SwitchWeapons"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""31e8a5c4-f2e3-4654-b2e5-5896cd45d56e"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SwitchWeapons"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -121,6 +152,7 @@ public partial class @ShootInput : IInputActionCollection2, IDisposable
         m_Shoot_Fire = m_Shoot.FindAction("Fire", throwIfNotFound: true);
         m_Shoot_Reload = m_Shoot.FindAction("Reload", throwIfNotFound: true);
         m_Shoot_Zoom = m_Shoot.FindAction("Zoom", throwIfNotFound: true);
+        m_Shoot_SwitchWeapons = m_Shoot.FindAction("SwitchWeapons", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -183,6 +215,7 @@ public partial class @ShootInput : IInputActionCollection2, IDisposable
     private readonly InputAction m_Shoot_Fire;
     private readonly InputAction m_Shoot_Reload;
     private readonly InputAction m_Shoot_Zoom;
+    private readonly InputAction m_Shoot_SwitchWeapons;
     public struct ShootActions
     {
         private @ShootInput m_Wrapper;
@@ -190,6 +223,7 @@ public partial class @ShootInput : IInputActionCollection2, IDisposable
         public InputAction @Fire => m_Wrapper.m_Shoot_Fire;
         public InputAction @Reload => m_Wrapper.m_Shoot_Reload;
         public InputAction @Zoom => m_Wrapper.m_Shoot_Zoom;
+        public InputAction @SwitchWeapons => m_Wrapper.m_Shoot_SwitchWeapons;
         public InputActionMap Get() { return m_Wrapper.m_Shoot; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -208,6 +242,9 @@ public partial class @ShootInput : IInputActionCollection2, IDisposable
                 @Zoom.started -= m_Wrapper.m_ShootActionsCallbackInterface.OnZoom;
                 @Zoom.performed -= m_Wrapper.m_ShootActionsCallbackInterface.OnZoom;
                 @Zoom.canceled -= m_Wrapper.m_ShootActionsCallbackInterface.OnZoom;
+                @SwitchWeapons.started -= m_Wrapper.m_ShootActionsCallbackInterface.OnSwitchWeapons;
+                @SwitchWeapons.performed -= m_Wrapper.m_ShootActionsCallbackInterface.OnSwitchWeapons;
+                @SwitchWeapons.canceled -= m_Wrapper.m_ShootActionsCallbackInterface.OnSwitchWeapons;
             }
             m_Wrapper.m_ShootActionsCallbackInterface = instance;
             if (instance != null)
@@ -221,6 +258,9 @@ public partial class @ShootInput : IInputActionCollection2, IDisposable
                 @Zoom.started += instance.OnZoom;
                 @Zoom.performed += instance.OnZoom;
                 @Zoom.canceled += instance.OnZoom;
+                @SwitchWeapons.started += instance.OnSwitchWeapons;
+                @SwitchWeapons.performed += instance.OnSwitchWeapons;
+                @SwitchWeapons.canceled += instance.OnSwitchWeapons;
             }
         }
     }
@@ -230,5 +270,6 @@ public partial class @ShootInput : IInputActionCollection2, IDisposable
         void OnFire(InputAction.CallbackContext context);
         void OnReload(InputAction.CallbackContext context);
         void OnZoom(InputAction.CallbackContext context);
+        void OnSwitchWeapons(InputAction.CallbackContext context);
     }
 }

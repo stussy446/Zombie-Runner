@@ -49,6 +49,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameOverCanvas: {fileID: 0}
+  weaponSwitcher: {fileID: 5487128637632337820}
 --- !u!114 &9125416800953554702
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -71,7 +72,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5180075102979060475}
-  - component: {fileID: 2830305950276933715}
+  - component: {fileID: 5487128637632337820}
   m_Layer: 0
   m_Name: Weapons
   m_TagString: Untagged
@@ -97,7 +98,7 @@ Transform:
   m_Father: {fileID: 585816574632774699}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2830305950276933715
+--- !u!114 &5487128637632337820
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -106,11 +107,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 2595647118629871979}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1dc567da00208ea47997280173cb7f06, type: 3}
+  m_Script: {fileID: 11500000, guid: 653bb6a444eb3bd44bb7fc9555d2a99c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  availableWeapons:
-  - {fileID: 2355192654608893300, guid: ada2587319194f542957a8c2ae277cb9, type: 3}
 --- !u!1001 &1055743915506457095
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -168,7 +167,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2337074158997199750, guid: 072963f9ac629c04e8f0fc5586c185e6, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2355192654608893300, guid: 072963f9ac629c04e8f0fc5586c185e6, type: 3}
       propertyPath: ammoSlot
@@ -258,7 +257,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2337074158997199750, guid: ada2587319194f542957a8c2ae277cb9, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2355192654608893300, guid: ada2587319194f542957a8c2ae277cb9, type: 3}
       propertyPath: ammoSlot

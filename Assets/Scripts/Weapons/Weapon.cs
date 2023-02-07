@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class Weapon : MonoBehaviour
@@ -9,6 +10,7 @@ public class Weapon : MonoBehaviour
     bool isShooting;
     bool isZooming;
     WeaponZoom weaponZoom;
+    WeaponSwitcher weaponSwitcher;
 
     [Header("Weapon Configurations")]
     [SerializeField] float bulletRange;
@@ -34,15 +36,20 @@ public class Weapon : MonoBehaviour
         weaponInputs = new ShootInput();
         cam = Camera.main;
         weaponZoom = GetComponent<WeaponZoom>();
+        weaponSwitcher = GetComponentInParent<WeaponSwitcher>();
     }
 
     private void OnEnable()
     {
         weaponInputs.Enable();
+
         weaponInputs.Shoot.Fire.started += ctx => Startshot();
         weaponInputs.Shoot.Fire.canceled += ctx => EndShot();
+
         weaponInputs.Shoot.Zoom.started += ctx => StartZoom();
         weaponInputs.Shoot.Zoom.canceled += ctx => EndZoom();
+
+        weaponInputs.Shoot.SwitchWeapons.performed += ctx => SwitchWeapons();
     }
 
     private void StartZoom()
@@ -128,5 +135,10 @@ public class Weapon : MonoBehaviour
     private void OnDisable()
     {
         weaponInputs.Disable();
+    }
+
+    private void SwitchWeapons()
+    {
+        weaponSwitcher.SetActiveWeapon();
     }
 }
